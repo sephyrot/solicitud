@@ -133,7 +133,7 @@ include "head.php";
 						</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="lista">
 					<tr>
 						<td>
 							1
@@ -217,12 +217,16 @@ include "head.php";
 				Esta sección te guiará para la creación de nuevas solicitudes de servicio.
 			</p>
 			<p>
-				<form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
-				  <input type="file" name="uploadctl" multiple />
-				  <ul id="fileList">
-				    <!-- The file list will be shown here -->
-				  </ul>
-				</form>
+				<span class="btn btn-info fileinput-button">
+			        <i class="glyphicon glyphicon-plus"></i>
+			        <span>Drop files...</span>
+			        <!-- The file input field used as target for the file upload widget -->
+			        <input id="fileupload" type="file" name="files[]" multiple>
+			    </span>
+			    <!-- The global progress bar -->
+			    <div id="progress" class="progress">
+			        <div class="progress-bar progress-bar-success"></div>
+			    </div>
 			</p>
 			<p>	
 				<a class="btn" href="#">Go! »</a>

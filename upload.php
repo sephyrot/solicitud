@@ -1,23 +1,18 @@
 <?php
 
 if(isset($_POST)) {
-
-    $allowed = array('jpg', 'jpeg', 'png', 'txt');
-
-    if(isset($_FILES['uploadctl']) && $_FILES['uploadctl']['error'] == 0){
-        $extension = pathinfo($_FILES['uploadctl']['name'], PATHINFO_EXTENSION);
-
-        if(!in_array(strtolower($extension), $allowed)){
-            echo '{"status":"error"}';
-            exit;
-        }
-
-        if(move_uploaded_file($_FILES['uploadctl']['tmp_name'], "files/".$_FILES['uploadctl']['name'])){
-            echo '{"status":"success"}';
-            exit;
-        }
-        echo '{"status":"error"}';
+    
+    error_log("ENTRA POST");
+    
+    if(isset($_FILES['files'])){
+        foreach ($_FILES['files']['name'] as $i => $nombre) {
+            if($_FILES['files']['error'][$i] == 0 && move_uploaded_file($_FILES['files']['tmp_name'][$i], "files/".$_FILES['files']['name'][$i])){
+                echo '{"status":"success"}';
+                exit;
+            }
+        }        
     }
+    
     exit();
 }
 ?>
